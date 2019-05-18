@@ -9,11 +9,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.tjedit.baseballgame.databinding.ActivityMainBinding;
+import com.tjedit.baseballgame.datas.Chat;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
     ActivityMainBinding act;
     int[] computerExamArray = new int[3];
 
+        List<Chat>chatList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +32,7 @@ public class MainActivity extends BaseActivity {
         act.inputBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                chatList.add(new Chat(true, act.userInputEdt.getText().toString()));
                 checkStrikeAndBalls();
             }
         });
@@ -52,10 +58,12 @@ public class MainActivity extends BaseActivity {
             }
         }
         if(strikeCount==3){
-            Toast.makeText(mContext, "정답입니다! 축하합니다!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(mContext, "정답입니다! 축하합니다!", Toast.LENGTH_SHORT).show();
+            chatList.add(new Chat(false,"정답입니다! 축하합니다!"));
         }
         else {
-            Toast.makeText(mContext, String.format("%d S , %d B입니다",strikeCount,ballCount), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(mContext, String.format("%d S , %d B입니다",strikeCount,ballCount), Toast.LENGTH_SHORT).show();
+            chatList.add(new Chat(false,String.format("%d S , %d B입니다",strikeCount,ballCount)));
         }
     }
 
@@ -100,6 +108,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void bindViews() {
-        act = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+        Log.d("바인딩","들어옴");
+        act = DataBindingUtil.setContentView(MainActivity.this, R.layout.activity_main);
     }
 }
