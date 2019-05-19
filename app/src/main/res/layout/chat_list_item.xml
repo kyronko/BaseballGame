@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <FrameLayout
+        android:id="@+id/userMsgFramLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ImageView
+
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/speech_bubble_user" />
+
+    <TextView
+        android:id="@+id/userMessage"
+        android:layout_marginLeft="35dp"
+        android:textSize="18sp"
+        android:text="사용자가 입력한 메세지"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical" />
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/computerMsgFramLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/speech_bubble_computer" />
+
+        <TextView
+            android:id="@+id/computerMessageTxt"
+            android:layout_marginLeft="35dp"
+            android:textSize="18sp"
+            android:text="사용자가 입력한 메세지"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" />
+    </FrameLayout>
+</LinearLayout>
