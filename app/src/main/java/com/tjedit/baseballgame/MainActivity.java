@@ -36,6 +36,7 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 chatList.add(new Chat(true, act.userInputEdt.getText().toString()));
                 mChatAdapter.notifyDataSetChanged();
+                act.messageListView.smoothScrollToPosition(chatList.size()-1);
                 checkStrikeAndBalls();
             }
         });
