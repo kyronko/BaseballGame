@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.tjedit.baseballgame.adapters.ChatAdapter;
 import com.tjedit.baseballgame.databinding.ActivityMainBinding;
 import com.tjedit.baseballgame.datas.Chat;
 
@@ -19,6 +20,7 @@ public class MainActivity extends BaseActivity {
     int[] computerExamArray = new int[3];
 
         List<Chat>chatList = new ArrayList<>();
+        ChatAdapter mChatAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 chatList.add(new Chat(true, act.userInputEdt.getText().toString()));
+                mChatAdapter.notifyDataSetChanged();
                 checkStrikeAndBalls();
             }
         });
@@ -60,16 +63,20 @@ public class MainActivity extends BaseActivity {
         if(strikeCount==3){
 //            Toast.makeText(mContext, "정답입니다! 축하합니다!", Toast.LENGTH_SHORT).show();
             chatList.add(new Chat(false,"정답입니다! 축하합니다!"));
+            mChatAdapter.notifyDataSetChanged();
         }
         else {
 //            Toast.makeText(mContext, String.format("%d S , %d B입니다",strikeCount,ballCount), Toast.LENGTH_SHORT).show();
             chatList.add(new Chat(false,String.format("%d S , %d B입니다",strikeCount,ballCount)));
+            mChatAdapter.notifyDataSetChanged();
         }
     }
 
     @Override
     public void setupValues() {
         makeExam();
+        mChatAdapter = new ChatAdapter(mContext,chatList);
+        act.messageListView.setAdapter(mChatAdapter);
 
     }
 
